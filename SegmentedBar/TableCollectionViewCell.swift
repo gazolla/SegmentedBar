@@ -22,7 +22,7 @@ class TableCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITabl
         tv.delegate = self
         tv.dataSource = self
         tv.registerClass(UITableViewCell.self, forCellReuseIdentifier:"cell")
-        tv.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+       // tv.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         return tv
     }()
     

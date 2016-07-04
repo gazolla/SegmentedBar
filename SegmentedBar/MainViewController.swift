@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
         let l = UICollectionViewFlowLayout()
         l.scrollDirection = .Horizontal
         l.minimumLineSpacing = 0
+     //   l.itemSize = self.collectionView.bounds.size
         return l
     }()
     
@@ -30,6 +31,7 @@ class MainViewController: UIViewController {
         cv.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         cv.scrollIndicatorInsets = UIEdgeInsetsMake(50,0,0,0)
         cv.pagingEnabled = true
+        
         return cv
     }()
    
@@ -89,13 +91,18 @@ extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
         let url = self.urls[indexPath.item]
         self.loadData(url) { (error, items) in
-            (cell as! TableCollectionViewCell).items = items!
+            if let items = items {
+                (cell as! TableCollectionViewCell).items = items
+            }
         }
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+        let adjust =    self.navigationController!.navigationBar.bounds.height +
+                        self.segmentBar.bounds.height +
+                        UIApplication.sharedApplication().statusBarFrame.height
+        return CGSize(width: self.view.bounds.width, height: self.view.bounds.height - adjust)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -103,12 +110,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-    
-        if (scrollView.contentOffset.x/self.view.bounds.width) == 0 {
-            self.segmentBar.segment.selectedSegmentIndex = 0
-        } else if (scrollView.contentOffset.x/self.view.bounds.width) == 1 {
-            self.segmentBar.segment.selectedSegmentIndex = 1
+        let position = (scrollView.contentOffset.x/self.view.bounds.width) % 1 == 0
+        if position {
+            self.segmentBar.segment.selectedSegmentIndex = Int(scrollView.contentOffset.x/self.view.bounds.width)
         }
+    
     }
     
     
