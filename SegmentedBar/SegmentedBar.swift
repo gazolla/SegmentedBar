@@ -35,6 +35,7 @@ class SegmentedBar:UIView {
         let x = (self.bounds.size.width - width) / 2
         let y = (self.bounds.size.height - height)/2
         let frame = CGRect(x: x, y: y, width: width, height: height)
+        print(frame)
         segment.frame = frame
     }
     

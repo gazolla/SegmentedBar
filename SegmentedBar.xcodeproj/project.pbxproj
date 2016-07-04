@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08108AB81D2A991C003FE30A /* TableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08108AB71D2A991C003FE30A /* TableCollectionViewCell.swift */; };
 		081CB83B1D1F35EF00D9FA1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081CB83A1D1F35EF00D9FA1E /* AppDelegate.swift */; };
 		081CB83D1D1F35EF00D9FA1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 081CB83C1D1F35EF00D9FA1E /* Assets.xcassets */; };
 		081CB8401D1F35F000D9FA1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 081CB83E1D1F35F000D9FA1E /* LaunchScreen.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08108AB71D2A991C003FE30A /* TableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCollectionViewCell.swift; sourceTree = "<group>"; };
 		081CB8371D1F35EF00D9FA1E /* SegmentedBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SegmentedBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		081CB83A1D1F35EF00D9FA1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		081CB83C1D1F35EF00D9FA1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		081CB8391D1F35EF00D9FA1E /* SegmentedBar */ = {
 			isa = PBXGroup;
 			children = (
+				08108AB71D2A991C003FE30A /* TableCollectionViewCell.swift */,
 				081CB8631D1F360200D9FA1E /* HTTP.swift */,
 				081CB8641D1F360200D9FA1E /* MainViewController.swift */,
 				081CB8651D1F360200D9FA1E /* SegmentedBar.swift */,
@@ -261,6 +264,7 @@
 				081CB8671D1F360200D9FA1E /* MainViewController.swift in Sources */,
 				081CB83B1D1F35EF00D9FA1E /* AppDelegate.swift in Sources */,
 				081CB8681D1F360200D9FA1E /* SegmentedBar.swift in Sources */,
+				08108AB81D2A991C003FE30A /* TableCollectionViewCell.swift in Sources */,
 				081CB8661D1F360200D9FA1E /* HTTP.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +484,7 @@
 				081CB85C1D1F35F000D9FA1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		081CB85D1D1F35F000D9FA1E /* Build configuration list for PBXNativeTarget "SegmentedBarTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +493,7 @@
 				081CB85F1D1F35F000D9FA1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		081CB8601D1F35F000D9FA1E /* Build configuration list for PBXNativeTarget "SegmentedBarUITests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +502,7 @@
 				081CB8621D1F35F000D9FA1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
