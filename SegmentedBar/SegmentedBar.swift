@@ -21,7 +21,7 @@ class SegmentedBar:UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.lightGrayColor()
+        self.backgroundColor = UIColor.lightGray
         self.addSubview(self.segment)
     }
     

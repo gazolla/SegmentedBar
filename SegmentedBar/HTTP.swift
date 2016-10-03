@@ -8,43 +8,43 @@
 
 import Foundation
 
-public class HTTP{
+open class HTTP{
     
-    static func GET(urlString:String, completion:(error:NSError?, data:NSData?)->Void){
-        if let request = NSMutableURLRequest(urlString: urlString, method: .GET){
+    static func GET(_ urlString:String, completion:@escaping (_ error:Error?, _ data:Data?)->Void){
+        if let request = URLRequest(urlString: urlString, method: .GET){
             connectToServer(request, completion: completion)
         } else {
-            let er = NSError(domain: "com.gazapps", code: 400, userInfo: [NSLocalizedDescriptionKey: NSHTTPURLResponse.localizedStringForStatusCode(400)])
-            completion(error: er, data: nil)
+            let er = NSError(domain: "com.gazapps", code: 400, userInfo: [NSLocalizedDescriptionKey: HTTPURLResponse.localizedString(forStatusCode: 400)])
+            completion(er, nil)
         }
     }
     
-    static func connectToServer(request:NSMutableURLRequest, completion:(error:NSError?, data:NSData?)->Void){
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
-        session.dataTaskWithRequest(request) { (data, response, error) in
+    static func connectToServer(_ request:URLRequest, completion:@escaping (_ error:Error?, _ data:Data?)->Void){
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        session.dataTask(with: request, completionHandler: { (data, response, error) in
             if error != nil {
-                completion(error: error, data: nil)
-            } else if let httpResponse = response as? NSHTTPURLResponse {
+                completion( error,  nil)
+            } else if let httpResponse = response as? HTTPURLResponse {
                 if 200...299 ~= httpResponse.statusCode {
-                    completion(error: nil, data: data)
+                    completion( nil, data)
                 } else {
-                    let er = NSError(domain: "com.gazapps", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: NSHTTPURLResponse.localizedStringForStatusCode(httpResponse.statusCode)])
-                    completion(error: er, data: nil)
+                    let er = NSError(domain: "com.gazapps", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode)])
+                    completion( er, nil)
                 }
             }
-        }.resume()
+        }) .resume()
     }
 }
 
-extension NSMutableURLRequest {
-    public convenience init?(urlString:String, method:HTTPVerb, body:NSData?=nil){
-        if let url = NSURL(string: urlString){
-            self.init(URL:url)
+extension URLRequest {
+    public  init?(urlString:String, method:HTTPVerb, body:Data?=nil){
+        if let url = URL(string: urlString){
+            self.init(url:url)
             self.addValue("aplpication/json", forHTTPHeaderField: "Content-type")
             self.addValue("application/json", forHTTPHeaderField: "Accept")
-            self.HTTPBody = body
-            self.HTTPMethod = method.rawValue
+            self.httpBody = body
+            self.httpMethod = method.rawValue
         } else {
             return nil
         }
